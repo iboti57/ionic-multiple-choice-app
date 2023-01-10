@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Fragen <i class="greyed-out" style="font-size: smaller;">({{collTitle}})</i></ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="returnToHome()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment value="all">
+    <ion-segment-button value="all">Alle &middot; {{questions.length}}</ion-segment-button>
+  </ion-segment>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Suchen nach..." clearIcon style="text-indent: 2.5px;" #search
+      (ionChange)="searchQuestions($event)"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="sortQuestions()">
+        <ion-icon slot="icon-only" name="text-outline"></ion-icon>
+        <ion-icon *ngIf="alreadySortedByText!=null && alreadySortedByText" name="arrow-up" class="arrow-icon">
+        </ion-icon>
+        <ion-icon *ngIf="alreadySortedByText!=null && !alreadySortedByText" name="arrow-down" class="arrow-icon">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-item-divider class="divider"></ion-item-divider>
+  <ion-refresher slot="fixed" (ionRefresh)="reloadQuestions($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-item *ngFor="let ques of questions">
+      <ion-label class="primaryText">
+        <b slot="start">{{ques.text}}</b>
+      </ion-label>
+      <ion-label style="text-indent: 2.5px;" class="greyed-out secondaryText">
+        <b *ngIf="ques.correct_answer==1"><u>{{ques.answers[0]}}</u>, </b>
+        <i *ngIf="ques.correct_answer!=1">{{ques.answers[0]}}, </i>
+        <b *ngIf="ques.correct_answer==2"><u>{{ques.answers[1]}}</u>, </b>
+        <i *ngIf="ques.correct_answer!=2">{{ques.answers[1]}}, </i>
+        <b *ngIf="ques.correct_answer==3"><u>{{ques.answers[2]}}</u>, </b>
+        <i *ngIf="ques.correct_answer!=3">{{ques.answers[2]}}, </i>
+        <b *ngIf="ques.correct_answer==4"><u>{{ques.answers[3]}}</u></b>
+        <i *ngIf="ques.correct_answer!=4">{{ques.answers[3]}}</i>
+      </ion-label>
+      <ion-buttons>
+        <ion-button (click)="editQuestion(ques)">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+    <ion-item *ngIf="loading" class="empty-list">
+      <ion-spinner name="dots" style="width: 4%; left: 48%;"></ion-spinner>
+    </ion-item>
+    <ion-item *ngIf="!questions.length && !loading" class="empty-list">
+      <ion-label><i>Keine Sammlung gefunden...</i></ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-item-divider class="divider"></ion-item-divider>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button slot="start" (click)="createQuestions()">Frage erstellen</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

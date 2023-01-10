@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="completed">Ergebnis: Bestanden!</ion-title>
+    <ion-title *ngIf="!completed">Ergebnis: Nicht bestanden!</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" style="cursor: pointer;">
+      <ion-icon (click)="onClose()" slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label class="title">
+            {{coll.title}}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label text-wrap>
+            Richtige Antworten: &nbsp;<b>{{correctAnswerCounter}} / {{quesLen}}</b>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngIf="completed">
+          <ion-label text-wrap *ngIf="mode == 0">
+            Sie hätten die Sammlung "{{coll.title}}" mit <b class="completed">{{percentage}}%</b> bestanden!
+            <br>
+            <ion-icon slot="icon-only" name="happy-outline"></ion-icon>
+          </ion-label>
+          <ion-label text-wrap *ngIf="mode == 1">
+            Sammlung "{{coll.title}}" wurde erfolgreich mit <b class="completed">{{percentage}}%</b> bestanden!
+            <br>
+            <ion-icon slot="icon-only" name="happy-outline" class="completed"></ion-icon>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngIf="!completed">
+          <ion-label text-wrap *ngIf="mode == 0">
+            Sie hätten die Sammlung "{{coll.title}}" nicht bestanden!<br>(Ergebnis: <b
+              class="not-completed">{{percentage}}%</b>)
+            <br>
+            <ion-icon slot="icon-only" name="sad-outline"></ion-icon>
+          </ion-label>
+          <ion-label text-wrap *ngIf="mode == 1">
+            Sammlung "{{coll.title}}" wurde nicht bestanden!<br>(Ergebnis: <b class="not-completed">{{percentage}}%</b>)
+            <br>
+            <ion-icon slot="icon-only" name="sad-outline" class="not-completed"></ion-icon>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

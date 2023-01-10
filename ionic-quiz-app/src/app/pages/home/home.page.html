@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sammlungen</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logOut()">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment value="all" (ionChange)="segmentChanged($event)" #segment>
+    <ion-segment-button value="all">Alle &middot; {{collectionCount[0]}}</ion-segment-button>
+    <ion-segment-button *ngIf="user != 'guest'" value="complete">Bearbeitet &middot; {{collectionCount[1]}}
+    </ion-segment-button>
+    <ion-segment-button *ngIf="user != 'guest'" value="incomplete">Unbearbeitet &middot; {{collectionCount[2]}}
+    </ion-segment-button>
+  </ion-segment>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Suchen nach..." clearIcon style="text-indent: 2.5px;" #search
+      (ionChange)="searchCollection($event)"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="sortCollections('name')">
+        <ion-icon slot="icon-only" name="text-outline"></ion-icon>
+        <ion-icon *ngIf="alreadySortedByName!=null && alreadySortedByName" name="arrow-up" class="arrow-icon">
+        </ion-icon>
+        <ion-icon *ngIf="alreadySortedByName!=null && !alreadySortedByName" name="arrow-down" class="arrow-icon">
+        </ion-icon>
+      </ion-button>
+      <ion-button (click)="sortCollections('time')">
+        <ion-icon slot="icon-only" name="alarm-outline"></ion-icon>
+        <ion-icon *ngIf="alreadySortedByTime!=null && alreadySortedByTime" name="arrow-up" class="arrow-icon">
+        </ion-icon>
+        <ion-icon *ngIf="alreadySortedByTime!=null && !alreadySortedByTime" name="arrow-down" class="arrow-icon">
+        </ion-icon>
+      </ion-button>
+      <ion-button (click)="filterByAuthor()" *ngIf="user != 'guest'">
+        <ion-icon slot="icon-only" name="person-outline"></ion-icon>
+        <ion-icon *ngIf="filteredByAuthor" name="lock-closed" class="arrow-icon"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-item-divider class="divider"></ion-item-divider>
+  <ion-refresher slot="fixed" (ionRefresh)="reloadCollections($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-item *ngFor="let coll of collections">
+      <ion-label class="primaryText">
+        <b slot="start">{{coll.title}}</b>
+      </ion-label>
+      <ion-label class="greyed-out small-text secondaryText">
+        <i slot="end" class="datum">{{coll.id}}</i>
+      </ion-label>
+      <ion-buttons class="collButtons">
+        <ion-button class="no-pointers">
+          <ion-icon *ngIf="coll.visibility=='public'" slot="icon-only" name="eye-outline"></ion-icon>
+          <ion-icon *ngIf="coll.visibility=='private'" slot="icon-only" name="eye-off-outline"></ion-icon>
+        </ion-button>
+        <ion-button (click)="showSheet(coll)">
+          <ion-icon slot="icon-only" name="play-sharp"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="user != 'guest'" (click)="editCollection(coll)">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="user == 'guest'" class="greyed-out">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+    <ion-item *ngIf="loading" class="empty-list">
+      <ion-spinner name="dots" style="width: 4%; left: 48%;"></ion-spinner>
+    </ion-item>
+    <ion-item *ngIf="!collections.length && !loading" class="empty-list">
+      <ion-label><i>Keine Sammlung gefunden...</i></ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-item-divider class="divider"></ion-item-divider>
+  <ion-toolbar>
+    <ion-buttons slot="end" *ngIf="user != 'guest'">
+      <ion-button (click)="newCollection()" slot="start">Sammlung erstellen</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

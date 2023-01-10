@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>MultipleChoice - Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="validationForm">
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input [(ngModel)]="Email" formControlName="Email" type="text" #email required></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validationMessages.Email">
+        <div class="error-message"
+          *ngIf="validationForm.get('Email').hasError(validation.type) && (validationForm.get('Email').dirty || validationForm.get('Email').touched)">
+          <ion-icon name="flash"></ion-icon> {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Passwort</ion-label>
+      <ion-input [(ngModel)]="Password" formControlName="Password" type="password" #password required></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validationMessages.Password">
+        <div class="error-message"
+          *ngIf="validationForm.get('Password').hasError(validation.type) && (validationForm.get('Password').dirty || validationForm.get('Password').touched)">
+          <ion-icon name="flash"></ion-icon> {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+    <div style="height: 30px; margin: 5px 0 0 16px;">
+      <a (click)="resetPassword(email)" style="line-height: 30px; font-size: small; cursor: pointer;">Passwort
+        vergessen?</a>
+    </div>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" (click)="logIn(email, password)" expand="block" [disabled]="!validationForm.valid">
+          Einloggen</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <ion-item-divider class="divider"></ion-item-divider>
+  <ion-toolbar>
+    <ion-button (click)="logInAsGuest()" slot="end" style="margin-right: 5px;" class="removeCaps">Als Gast einloggen
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

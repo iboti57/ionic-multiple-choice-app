@@ -1,0 +1,28 @@
+.header {
+    font-size: 30px !important;
+    margin-bottom: 8px;
+}
+
+.collectionSize {
+    height: 32px;
+    font-size: 16px !important;
+    pointer-events: none;
+    margin-inline-start: 2px;
+    margin-inline-end: 2px;
+    padding-left: 8px;
+    border-radius: 2px;
+}
+.collectionSize > b {
+    font-size: 18px !important;
+}
+
+::ng-deep .alert-wrapper {
+    min-width: 40% !important;
+}
+
+.id-view {
+    line-height: 1;
+    font-size: 12px;
+    float: right;
+    margin: 2.5px 2.5px 0 2.5px;
+}

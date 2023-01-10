@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Frage bearbeiten</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" style="cursor: pointer;">
+      <ion-icon (click)="onClose()" slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="questionForm">
+    <ion-card>
+      <ion-card-content>
+        <ion-list lines="full">
+          <ion-item>
+            <ion-label position="stacked" class="header">Fragetext
+              <span style="float: right;">{{qNumber}}/{{collSize}}</span>
+            </ion-label>
+            <ion-textarea formControlName="questionName" #qText [(ngModel)]="questionText" type="text" rows="5"
+              placeholder="Neue Frage">
+            </ion-textarea>
+          </ion-item>
+          <div class="validation-errors">
+            <div class="error-message"
+              *ngIf="errorControl.questionName.errors?.required && (questionForm.get('questionName').dirty || questionForm.get('questionName').touched)">
+              <ion-icon name="flash"></ion-icon> Fragetext erforderlich!
+            </div>
+          </div>
+          <ion-radio-group #qAnswers>
+            <ion-item>
+              <ion-label>1: </ion-label>
+              <ion-radio slot="start" value="1"></ion-radio>
+              <ion-input formControlName="aText1" [(ngModel)]="answerText[0]" type="text" maxlength="36"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>2: </ion-label>
+              <ion-radio slot="start" value="2"></ion-radio>
+              <ion-input formControlName="aText2" [(ngModel)]="answerText[1]" type="text" maxlength="36"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>3: </ion-label>
+              <ion-radio slot="start" value="3"></ion-radio>
+              <ion-input formControlName="aText3" [(ngModel)]="answerText[2]" type="text" maxlength="36"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>4: </ion-label>
+              <ion-radio slot="start" value="4"></ion-radio>
+              <ion-input formControlName="aText4" [(ngModel)]="answerText[3]" type="text" maxlength="36"></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <div class="error-message"
+                *ngIf="(errorControl.aText1.errors?.required && (questionForm.get('aText1').dirty || questionForm.get('aText1').touched)) ||
+                (errorControl.aText2.errors?.required && (questionForm.get('aText2').dirty || questionForm.get('aText2').touched)) ||
+                (errorControl.aText3.errors?.required && (questionForm.get('aText3').dirty || questionForm.get('aText3').touched)) ||
+                (errorControl.aText4.errors?.required && (questionForm.get('aText4').dirty || questionForm.get('aText4').touched))">
+                <ion-icon name="flash"></ion-icon>Für jede Antwort ist ein Antworttext erforderlich!
+              </div>
+            </div>
+          </ion-radio-group>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="deleteQuestion(false)">Löschen</ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button [disabled]="!questionForm.valid" (click)="save()">Speichern</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </form>
+</ion-content>

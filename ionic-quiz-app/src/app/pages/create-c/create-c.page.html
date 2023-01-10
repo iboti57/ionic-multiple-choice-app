@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sammlung erstellen</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon (click)="onClose()" slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="collectionForm">
+    <ion-card>
+      <ion-card-content>
+        <ion-list lines="full">
+          <ion-item>
+            <ion-label position="stacked" class="header">Sammlungstitel</ion-label>
+            <ion-input formControlName="collName" type="text" [(ngModel)]="collectionName" placeholder="Neue Sammlung" maxlength="42">
+            </ion-input>
+          </ion-item>
+          <div class="validation-errors">
+            <div class="error-message"
+              *ngIf="errorControl.collName.errors?.required && (collectionForm.get('collName').dirty || collectionForm.get('collName').touched)">
+              <ion-icon name="flash"></ion-icon> Sammlungstitel erforderlich!
+            </div>
+          </div>
+          <ion-list style="width: 100%;">
+            <ion-radio-group value="public" (ionChange)="getValue($event)">
+              <ion-list-header>
+                <ion-label>Zugriff</ion-label>
+              </ion-list-header>
+              <ion-item>
+                <ion-label>Öffentlich</ion-label>
+                <ion-radio slot="start" value="public"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Privat</ion-label>
+                <ion-radio slot="start" value="private"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="onClose()">Abbrechen</ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button [disabled]="!collectionForm.valid" (click)="createCollection()">Erstellen</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </form>
+</ion-content>

@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sammlung bearbeiten</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" style="cursor: pointer;">
+      <ion-icon (click)="onClose()" slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="editForm">
+    <ion-card>
+      <ion-card-content>
+        <ion-list lines="full">
+          <ion-item [ngClass]="checkUser() ? '' : 'greyed-out'">
+            <ion-label position="stacked" class="header">Sammlungstitel</ion-label>
+            <ion-input type="text" formControlName="collName" [(ngModel)]="collectionName" maxlength="42"></ion-input>
+            <ion-buttons slot="end" class="greyed-but-working">
+              <ion-button *ngIf="completed || counterSize > 0" (click)="resetCollection()">
+                <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-item>
+          <i class="id-view">ID: {{coll.id}}</i>
+          <ion-list style="width: 100%;">
+            <ion-radio-group value="{{coll.visibility}}" (ionChange)="getValue($event)"
+              [ngClass]="checkUser() ? '' : 'greyed-out'">
+              <ion-list-header>
+                <ion-label>Zugriff</ion-label>
+              </ion-list-header>
+              <ion-item>
+                <ion-label>Öffentlich</ion-label>
+                <ion-radio slot="start" value="public"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Privat</ion-label>
+                <ion-radio slot="start" value="private"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+          <ion-card>
+            <ion-card-content>
+              <ion-toolbar>
+                <div slot="start" class="collectionSize">
+                  <ion-label>Anzahl Fragen: &nbsp;</ion-label>
+                  <b>{{collectionSize}}</b>
+                </div>
+                <ion-buttons slot="end" [ngClass]="checkUser() ? '' : 'greyed-out'">
+                  <ion-button (click)="editQuestions()">
+                    <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-card-content>
+          </ion-card>
+          <ion-toolbar [ngClass]="checkUser() ? '' : 'greyed-out'">
+            <ion-buttons slot="start">
+              <ion-button (click)="deleteCollection(false)">Löschen</ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button (click)="save()">Speichern</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </form>
+</ion-content>

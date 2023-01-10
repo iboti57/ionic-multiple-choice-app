@@ -1,0 +1,39 @@
+ion-segment-button {
+    width: 100%;
+}
+
+.divider {
+    min-height: 12px;
+}
+
+.greyed-out {
+    pointer-events: none;
+    opacity: 33.3%;
+}
+
+.small-text {
+    font-size: 12px;
+    align-self: flex-end;
+    vertical-align: text-bottom;
+    text-align: end;
+}
+
+.no-pointers {
+    pointer-events: none;
+}
+
+.empty-list {
+    text-align: center;
+    opacity: 66.6%;
+    color: #999;
+}
+
+.arrow-icon {
+    margin-left: 25px;
+    margin-top: 15px;
+    z-index: 9;
+    background-color: rgba(0,0,0,0.75);
+    border-radius: 50%;
+    position: fixed;
+    transform: scale(0.66);
+}

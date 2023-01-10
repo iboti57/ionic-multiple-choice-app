@@ -1,0 +1,168 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+.toast-custom-class {
+    font-size: 14px;
+    text-align: center;
+    --width: fit-content;
+    margin-left: auto;
+}
+
+.reload-toast {
+    font-size: 14px;
+    text-align: center;
+    --width: fit-content;
+    margin-left: auto;
+    margin-top: 8rem;
+}
+
+.alert-custom-class {
+    min-width: min-content;
+    --width: fit-content;
+    margin-left: auto;
+}
+
+@media (max-width: 440px) {
+    ion-segment-button {
+        width: auto;
+        text-transform: none;
+    }
+    .primaryText {
+        min-width: 50%;
+    }
+    .secondaryText {
+        visibility: hidden;
+        margin-right: 0;
+        max-width: 0px;
+    }
+    .collButtons {
+        :nth-child(2) {
+            margin: 0 -8px !important;
+        }
+    }
+}
+
+@media (min-width: 441px) {
+    ion-segment-button {
+        width: 33.3%;
+        text-transform: none;
+    }
+    .primaryText {
+        min-width: 40%;
+    }
+    .secondaryText {
+        min-width: 15%;
+        margin-right: 5px;
+    }
+}
+
+@media (min-width: 441px) and (max-width: 1080px) {
+    .secondaryText *:not(.datum) {
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: text-bottom;
+        max-width: 10ch;
+    }
+}
+
+@media (min-width: 1081px) and (max-width: 1400px) {
+    .secondaryText *:not(.datum) {
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: text-bottom;
+        max-width: 20ch;
+    }
+}
+
+@media (min-width: 1401px) {
+    .secondaryText *:not(.datum) {
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: text-bottom;
+        max-width: auto;
+    }
+}
+
+ion-toolbar {
+    vertical-align: middle;
+}
+
+.removeCaps {
+    text-transform: none;
+}
+
+.divider {
+    min-height: 12px;
+}
+
+.greyed-but-working {
+    pointer-events: all;
+    color: rgba(255,255,255,1);
+}
+
+.greyed-out:not(.greyed-but-working) {
+    pointer-events: none;
+    color: rgba(255,255,255,0.33);
+}
+
+.small-text {
+    font-size: 12px;
+    align-self: flex-end;
+    vertical-align: text-bottom;
+    text-align: end;
+}
+
+.no-pointers {
+    pointer-events: none;
+}
+
+.empty-list {
+    text-align: center;
+    opacity: 66.6%;
+    color: #999;
+}
+
+.arrow-icon {
+    margin-left: 25px;
+    margin-top: 15px;
+    z-index: 9;
+    background-color: rgba(0,0,0,0.75);
+    border-radius: 50%;
+    position: fixed;
+    transform: scale(0.66);
+}
+
+.createQuestion {
+    .modal-wrapper {
+        white-space: nowrap;
+        --min-height: 80%;
+        vertical-align: middle;
+    }
+}

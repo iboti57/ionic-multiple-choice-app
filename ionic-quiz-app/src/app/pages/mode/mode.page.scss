@@ -1,0 +1,46 @@
+.selected {
+  color: gold;
+  text-decoration: underline;
+}
+
+.true {
+  font-size: x-large;
+  float: right;
+  margin: auto 10%;
+  color: #2fdf75;
+}
+.false {
+  font-size: x-large;
+  float: right;
+  margin: auto 10%;
+  color: red;
+}
+
+.header {
+  font-size: 30px !important;
+  margin-bottom: 8px;
+}
+
+.hide-item {
+  visibility: hidden;
+}
+
+.full {
+  display: none;
+}
+
+.check-button {
+  width: 33.3%;
+  margin: auto !important;
+}
+
+section {
+  width: 100%;
+  white-space: nowrap;
+  display: inline;
+}
+
+ion-radio {
+  margin-right: 16px;
+  max-width: 50px;
+}
