@@ -12,4 +12,5 @@ im Prüfungsmodus mit anschließender Ergebnis-Rückmeldung zu testen.
 - Profitieren Sie davon. 🎉
 
 ## App-Vorschau
+![home](https://github.com/iboti57/ionic-multiple-choice-app/assets/72953173/b5f53304-d9ea-477a-b541-dfc277368b06)
 
