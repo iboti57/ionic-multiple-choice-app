@@ -13,6 +13,8 @@ im Prüfungsmodus mit anschließender Ergebnis-Rückmeldung zu testen.
 
 ## App-Vorschau
 ![home](https://github.com/iboti57/ionic-multiple-choice-app/assets/72953173/b5f53304-d9ea-477a-b541-dfc277368b06) ![Home1](https://github.com/iboti57/ionic-multiple-choice-app/assets/72953173/bc7e9cdc-3b90-47fe-9f86-70396a9cd3bd)
-![Modus auswählen](https://github.com/iboti57/ionic-multiple-choice-app/assets/72953173/e4dbcaeb-45a2-4df5-87eb-3c26a8adde9e)
+![Modus auswählen](https://github.com/iboti57/ionic-multiple-choice-app/assets/72953173/e4dbcaeb-45a2-4df5-87eb-3c26a8adde9e) ![Fragen](https://github.com/iboti57/ionic-multiple-choice-app/assets/72953173/27be81dc-1673-4655-bb4c-9d68fde95bef)
+![nicht bestanden](https://github.com/iboti57/ionic-multiple-choice-app/assets/72953173/4370582d-7d1b-43ab-be86-2f2e36014ae8) ![Create a Sammlung](https://github.com/iboti57/ionic-multiple-choice-app/assets/72953173/d4b02b6c-b8aa-4484-a85c-fd5ecaa78fd2)
+
 
 
